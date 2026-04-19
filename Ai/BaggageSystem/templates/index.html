@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AeroFlow | Baggage Control</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+    <div class="app-container">
+        <nav class="sidebar">
+            <div class="logo">🛄 AeroFlow <span>Logistics</span></div>
+            <div class="control-panel">
+                <div class="input-group">
+                    <label>Origin Terminal</label>
+                    <select id="startSelect"></select>
+                </div>
+                <div class="input-group">
+                    <label>Target Gate</label>
+                    <select id="endSelect"></select>
+                </div>
+                <button id="dispatchBtn" class="primary-btn">Initialize Dispatch</button>
+            </div>
+            <div class="stats-card">
+                <div class="stat-item">
+                    <span class="label">Status:</span>
+                    <span id="statusLabel" class="value idle">IDLE</span>
+                </div>
+                <div class="stat-item">
+                    <span class="label">Est. Time:</span>
+                    <span id="timeLabel" class="value">--</span>
+                </div>
+            </div>
+        </nav>
+        
+        <main class="viewport">
+            <div class="canvas-header">
+                <h2>Real-time Network Topology</h2>
+                <div class="legend">
+                    <span class="dot origin"></span> Entry
+                    <span class="dot hub"></span> Hub
+                    <span class="dot gate"></span> Gate
+                </div>
+            </div>
+            <canvas id="mainCanvas"></canvas>
+        </main>
+    </div>
+    <script src="/static/script.js"></script>
+</body>
+</html>
