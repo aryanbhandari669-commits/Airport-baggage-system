@@ -3,8 +3,6 @@ import heapq
 
 app = Flask(__name__)
 
-# Real-world Logistics Data
-# Node Format: { id: { name: str, type: str, pos: [x, y] } }
 AIRPORT_MAP = {
     0: {"name": "Main Check-In", "type": "origin", "pos": [50, 225]},
     1: {"name": "Security Scan A", "type": "process", "pos": [200, 100]},
@@ -15,7 +13,6 @@ AIRPORT_MAP = {
     6: {"name": "International Pier", "type": "gate", "pos": [750, 225]}
 }
 
-# Graph Edges: (Source, Target, Weight/Distance)
 EDGES = [
     (0, 1, 10), (0, 2, 12), (1, 3, 15), (2, 3, 15),
     (3, 4, 20), (3, 5, 20), (3, 6, 25), (4, 6, 10), (5, 6, 10)
@@ -25,7 +22,7 @@ def get_dijkstra(start, end):
     adj = {i: [] for i in AIRPORT_MAP}
     for u, v, w in EDGES:
         adj[u].append((v, w))
-        adj[v].append((u, w)) # Bi-directional belts
+        adj[v].append((u, w)) 
 
     queue = [(0, start, [])]
     visited = set()
@@ -58,4 +55,5 @@ def route():
     return jsonify({"path": path, "cost": cost})
 
 if __name__ == '__main__':
+
     app.run(debug=True, port=5000)
