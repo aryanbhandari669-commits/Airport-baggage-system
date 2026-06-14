@@ -2,7 +2,6 @@ const canvas = document.getElementById('mainCanvas');
 const ctx = canvas.getContext('2d');
 let airportData = { nodes: {}, edges: [] };
 
-// Initialize App
 async function init() {
     const res = await fetch('/config');
     airportData = await res.json();
@@ -24,8 +23,7 @@ function populateDropdowns() {
 
 function renderBase() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    
-    // Draw Belts (Edges)
+
     ctx.strokeStyle = '#334155';
     ctx.lineWidth = 2;
     ctx.setLineDash([5, 5]);
@@ -37,8 +35,6 @@ function renderBase() {
         ctx.lineTo(n2[0], n2[1]);
         ctx.stroke();
     });
-
-    // Draw Nodes
     ctx.setLineDash([]);
     for (let id in airportData.nodes) {
         const node = airportData.nodes[id];
@@ -99,5 +95,6 @@ function resize() {
     canvas.width = canvas.offsetWidth;
     canvas.height = canvas.offsetHeight;
 }
+
 
 init();
